@@ -77,6 +77,8 @@ module.exports = function (config) {
     'bower_components/pdfmake/build/pdfmake.js',
     'bower_components/pdfmake/build/vfs_fonts.js',
     'bower_components/bootstrap-table-fixed-columns/bootstrap-table-fixed-columns.js',
+    'bower_components/angular-ui-ace/ui-ace.js',
+    'bower_components/angular-formentry/dist/scripts/angularFormentry.js',
     'bower_components/angular-mocks/angular-mocks.js',
     // endbower
       'app/scripts/**/*.module.js',

@@ -18,7 +18,8 @@
             'dialogs.default-translations',
             'darthwade.dwLoading',
             'app.utils',
-            'sticky'
+            'sticky',
+            'openmrs.angularFormentry'
         ])
     .config(function($stateProvider) {
       $stateProvider
