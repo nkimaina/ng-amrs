@@ -22,7 +22,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         $rootScope, $stateParams, $state, $scope,
         OpenmrsRestService, $timeout, FormsMetaData,
         $loading, $anchorScroll, UserDefaultPropertiesService, FormentryUtilService,
-        configService, SearchDataService, 
+        configService, SearchDataService,
         $log, FormEntry, PersonAttributesRestService) {
         var vm = $scope;
         
@@ -42,7 +42,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
             }
         };
         vm.currentMode = formModes.newForm;
-        
+
         var selectedFormMetadata;
         var selectedFormSchema;
         var selectedFormUuid = $stateParams.formuuid;
@@ -61,6 +61,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         vm.submitLabel = 'Save';
         vm.submit = submit;
         vm.isBusy = false;
+        vm.hasFailedNewingRequest = false;
         vm.hasFailedVoidingRequest = false;
         vm.hasFailedUpdatingingRequest = false;
         vm.hasFailedPersonAttributeRequest = false;
@@ -137,9 +138,9 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
             vm.tabs = newForm;
             vm.questionMap = formObject.questionMap;
             $log.debug('Created question map', vm.questionMap);
-            
-            if(vm.currentMode === formModes.existingForm){
-                 populateModelWithData();
+
+            if (vm.currentMode === formModes.existingForm) {
+                populateModelWithData();
             }
         }
         
@@ -185,7 +186,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
                 });
             }
             loadPersonAttribute(vm.patient);
-            if(numberOfRequests === 0){
+            if (numberOfRequests === 0) {
                 successCallback();
             }
         }
@@ -202,6 +203,17 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         
         function isFormInvalid() {
             return vm.form.$valid === false;
+        }
+
+        function experiencedSubmitError() {
+            return vm.hasFailedNewingRequest || vm.hasFailedVoidingRequest || vm.hasFailedUpdatingingRequest || vm.hasFailedPersonAttributeRequest;
+        }
+
+        function resetErrorFlags() {
+            vm.hasFailedNewingRequest = false;
+            vm.hasFailedVoidingRequest = false;
+            vm.hasFailedUpdatingingRequest = false;
+            vm.hasFailedPersonAttributeRequest = false;
         }
 
         function getVoidedObsFromPayload(payload) {
@@ -362,13 +374,17 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         }
 
         function onSubmitProcessCompleted() {
-            vm.formSubmitSuccessMessage = '| Form Submitted successfully';
-            dialogs.notify('Success', vm.formSubmitSuccessMessage);
-            $location.path($rootScope.previousState + '/' + $rootScope.previousStateParams.uuid);
+            isSpinnerBusy(false);
+            if (!experiencedSubmitError()) {
+                vm.formSubmitSuccessMessage = '| Form Submitted successfully';
+                dialogs.notify('Success', vm.formSubmitSuccessMessage);
+                $location.path($rootScope.previousState + '/' + $rootScope.previousStateParams.uuid);
+            }
         }
 
         function submitFormPayload() {
             initializeSubmitStagingObject(vm.fourStageSubmitProcess, true);
+            resetErrorFlags();
             isSpinnerBusy(true);
             
             //first stage of submitting is to save new obs
@@ -435,7 +451,9 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         }
 
         function submitNewObsPayloadFailed(error) {
-            initializeSubmitStagingObject(vm.fourStageSubmitProcess, true);
+            initializeSubmitStagingObject(vm.fourStageSubmitProcess, false);
+            vm.hasFailedNewingRequest = true;
+            onSubmitStageUpdated();
         }
 
         function submitVoidedObs(voidedObsPayload, finalCallback) {
