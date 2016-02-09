@@ -33,7 +33,6 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         vm.model = {};
         vm.questionMap = {};
         vm.encounterType = '';
-        vm.currentMode = formModes.newForm;
         var formModes = {
             newForm: {
                 submitLabel: 'Save'
@@ -42,6 +41,8 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
                 submitLabel: 'Update'
             }
         };
+        vm.currentMode = formModes.newForm;
+        
         var selectedFormMetadata;
         var selectedFormSchema;
         var selectedFormUuid;
@@ -183,6 +184,9 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
                 });
             }
             loadPersonAttribute(vm.patient);
+            if(numberOfRequests === 0){
+                successCallback();
+            }
         }
 
         function populateModelWithData() {
