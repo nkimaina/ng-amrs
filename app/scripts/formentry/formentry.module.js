@@ -41,6 +41,9 @@
           data: { requireLogin: true }
         });
     })
+    .run(['FormentryConfig','OpenmrsSettings', function(FormentryConfig, OpenmrsSettings){
+        FormentryConfig.setOpenmrsBaseUrl(OpenmrsSettings.getCurrentRestUrlBase());
+    }])
   .config(['dialogsProvider','$translateProvider', function(dialogsProvider,$translateProvider) {
     dialogsProvider.useBackdrop('static');
 		dialogsProvider.useEscClose(false);

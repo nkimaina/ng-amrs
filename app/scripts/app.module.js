@@ -28,7 +28,7 @@
       'app.admin',
       'app.formentry',
       'app.utils',
-      'app.logToServer',
+    //   'app.logToServer',
       'ct.ui.router.extras',
       'sticky'
     ])

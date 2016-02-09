@@ -12,7 +12,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
 
     FormentryCtrl.$inject = ['$translate', 'dialogs', '$location',
         '$rootScope', '$stateParams', '$state', '$scope',
-        'OpenmrsRestService', '$timeout', 'FormsMetaData', 'UtilService'
+        'OpenmrsRestService', '$timeout', 'FormsMetaData'
         , '$loading', '$anchorScroll', 'UserDefaultPropertiesService'
         , 'FormentryUtilService', 'configService', 'SearchDataService',
         '$log', 'FormEntry', 'PersonAttributesRestService'
@@ -22,7 +22,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         $rootScope, $stateParams, $state, $scope,
         OpenmrsRestService, $timeout, FormsMetaData,
         $loading, $anchorScroll, UserDefaultPropertiesService, FormentryUtilService,
-        configService, SearchDataService, UtilService,
+        configService, SearchDataService, 
         $log, FormEntry, PersonAttributesRestService) {
         var vm = $scope;
         
@@ -45,7 +45,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         
         var selectedFormMetadata;
         var selectedFormSchema;
-        var selectedFormUuid;
+        var selectedFormUuid = $stateParams.formuuid;
         var lastPayload;
         var lastPersonAttributePayload;
         
@@ -59,6 +59,7 @@ jshint -W098, -W003, -W068, -W004, -W033, -W030, -W117, -W069, -W106
         //Navigation parameters
         vm.hasClickedSubmit = false;
         vm.submitLabel = 'Save';
+        vm.submit = submit;
         vm.isBusy = false;
         vm.hasFailedVoidingRequest = false;
         vm.hasFailedUpdatingingRequest = false;
