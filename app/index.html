@@ -10,7 +10,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-loading/angular-loading.css" />
-     <!--
+    <!--
    offline indicator Themes:
    <link rel="stylesheet" href="./themes/offline-theme-default.css" />
    <link rel="stylesheet" href="./themes/offline-theme-default-indicator.css" />
@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="styles/medical-icons/wfmi-style.css">
     <link rel="stylesheet" href="styles/ng-switcher.css">
     <link rel="stylesheet" href="styles/offline-fix.css">
-  <link rel="stylesheet" href="styles/notification.css">
+    <link rel="stylesheet" href="styles/notification.css">
     <!-- endbuild -->
 </head>
 
@@ -60,7 +60,15 @@
     </main-navigation-bar>
 
     <sticky-scroll class="container-fluid " id="main-content">
-        <div ui-view></div>
+        <div>
+            <div ui-view></div>
+            <button ng-click="hideAdult = !hideAdult"> hide triage </button>
+            <button ng-click="hideTriage = !hideTriage"> hide adult </button>
+            <nicky-kimaina ng-hide="hideAdult" forms-data-uuid="a2b811ed-6942-405a-b7f8-e7ad6143966c">
+            </nicky-kimaina>
+            <nicky-kimaina ng-hide="hideTriage"  forms-data-uuid="1339a535-e38f-44cd-8cf8-f42f7c5f2ab7">
+            </nicky-kimaina>
+        </div>
     </sticky-scroll>
 
 
@@ -212,7 +220,7 @@
 
     <!-- directives -->
     <script src="scripts/clinic-dashboard/directives/appointments-calendar.directive.js"></script>
-      <script src="scripts/main/directives/main-navigation.directive.js"></script>
+    <script src="scripts/main/directives/main-navigation.directive.js"></script>
     <script src="scripts/main/directives/version.directive.js"></script>
     <script src="scripts/main/directives/connectivity.directive.js"></script>
     <script src="scripts/patient-dashboard/directives/patient-demographics.directive.js"></script>
@@ -229,6 +237,7 @@
     <script src="scripts/patient-search/directives/focus.directive.js"></script>
     <script src="scripts/patient-dashboard/directives/current-visit.directive.js"></script>
     <script src="scripts/formentry/directives/openmrs-forms.directive.js"></script>
+    <script src="scripts/formentry/directives/single-form.directive.js"></script>
     <script src="scripts/admin/directives/patient-list.directive.js"></script>
     <script src="scripts/admin/directives/patient-monthly-list.directive.js"></script>
     <script src="scripts/admin/directives/patient-creation-statistics.directive.js"></script>
@@ -275,10 +284,10 @@
     <script src="scripts/utils/services/util.service.js"></script>
 
 
-     <!-- endbuild -->
-<!-- build:js({.tmp,app}) scripts/templates.js -->
-  <script src="scripts/utils/templates.js"></script>
- <!-- endbuild -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/templates.js -->
+    <script src="scripts/utils/templates.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>

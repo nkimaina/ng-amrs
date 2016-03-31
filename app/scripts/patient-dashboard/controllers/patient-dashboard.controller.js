@@ -17,6 +17,7 @@
   function PatientDashboardCtrl($rootScope, $scope, $stateParams, $timeout, OpenmrsRestService) {
     $scope.patient = {};
     $scope.patient = $rootScope.broadcastPatient;
+    $rootScope.$broadcast('selectedPatientChanged');
     $scope.p = null;
     $scope.encounters = [];
 

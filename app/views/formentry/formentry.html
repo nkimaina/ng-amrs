@@ -1,4 +1,4 @@
-<div style="padding:4px;" dw-loading="formEntryLoader" dw-loading-options="{text: 'Processing request..'}">
+<div style="padding:4px;" dw-loading="formEntryLoader" dw-loading-options="{text: 'Processing request..'}" ng-hide="patient == undefined">
     
     <script>
       // depending on how you're loading apiCheck, you may need to use AMD or CommonJS
@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="bower_components/angular-dialog-service/dist/dialogs.css">
     <div class="breadcrumb">
         <h2>{{patient.fullNames() | titlecase}} | Sex: {{patient.gender()}} | Age: {{patient.age()}} | Identifier: {{patient.identifierFormatted()}}</h2>{{encounterType}} - {{vm.encounter.encounterDate()| date:'dd-MM-yyyy'}} - {{vm.encounter.locationName()}} {{vm.success}}
-        <strong><current-visit-vitals patient-uuid="{{patient.uuid()}}"></current-visit-vitals></strong>
+        <!--<strong><current-visit-vitals patient-uuid="{{patient.uuid()}}"></current-visit-vitals></strong>-->
     </div>
     <a id="top"></a>
-    <div class="panel panel-default" style="margin-top: -20px;">
+    <!--<div class="panel panel-default" style="margin-top: -20px;">
     <div class="panel-heading" style=" cursor: pointer;" data-ng-click="isSummaryExpanded = !isSummaryExpanded">
       <span class="text-default" style="margin-left: 2px;"> Patient Summaries </span>
-      <!--<button class="btn btn-default btn-sm pull-right">V</button>-->
       <span class="label label-default pull-right" style="margin-right: 4px;" ng-show="isSummaryExpanded">
         <span class="glyphicon glyphicon-menu-up"> </span>
      </span>
@@ -58,7 +57,7 @@
         </tab>
       </tabset>
     </div>
-  </div>
+  </div>-->
     <!-- Error messages Summary -->
     <div sticky>
         <button class="btn btn-warning" style="margin: 2px; width: 99%; horizontal-align: center;" data-ng-show="(isFormInvalid() && hasClickedSubmit)"

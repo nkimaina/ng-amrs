@@ -33,7 +33,7 @@ jscs:disable disallowQuotedKeysInObjects, safeContextKeyword, requireDotNotation
         return service;
 
         function getForm(uuid) {
-
+        forms = CachedDataService.getCachedPocForms();
             var result = _.find(forms, function (form) {
                 //console.log(form)
                 if (form.uuid === uuid) return form;
