@@ -14,6 +14,7 @@
             "sections": [
                 {
                     "label": "Encounter Details",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "label": "Visit Date",
@@ -509,6 +510,7 @@
             "sections": [
                 {
                     "label": "ART History",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "label": "Is patient currently on ART?",
@@ -804,6 +806,7 @@
             "sections": [
                 {
                     "label": "PCP Prophylaxis",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "label": "PCP Prophylaxis:",
@@ -1755,6 +1758,7 @@
             "sections": [
                 {
                     "label": "TB Screening questions",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "label": "TB Symptoms:",
@@ -2435,6 +2439,7 @@
             "sections": [
                 {
                     "label": "ART plan",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "required": "true",
@@ -2874,6 +2879,7 @@
                 },
                 {
                     "label": "PCP Prophylaxis Plan",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "required": "true",
@@ -3081,6 +3087,7 @@
                 },
                 {
                     "label": "TB Prophylaxis Plan",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "label": "TB Prophylaxis Plan:",
@@ -4029,6 +4036,7 @@
                 },
                 {
                     "label": "Next appointment",
+                    "isExpanded": true,
                     "questions": [
                         {
                             "label": "Return to clinic Date:",
