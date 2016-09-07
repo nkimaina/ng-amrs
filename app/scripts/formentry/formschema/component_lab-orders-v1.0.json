@@ -192,7 +192,18 @@
                                             }
                                         ]
                                     },
-                                    "validators": [],
+                                    "validators": [
+                                        {
+                                            "type": "js_expression",
+                                            "failsWhenExpression": "isEmpty(myValue) && arrayContains(order1, 'a8982474-1350-11df-a1f1-0026b9348838')",
+                                            "message": "VL justification is required when there's a VL test ordered."
+                                        },
+                                        {
+                                            "type": "js_expression",
+                                            "failsWhenExpression": "!isEmpty(myValue) && !arrayContains(order1, 'a8982474-1350-11df-a1f1-0026b9348838')",
+                                            "message": "Only answer this question when there's a VL ordered."
+                                        }
+                                    ],
                                     "hide": {
                                         "hideWhenExpression": "isEmpty(order1) || !arrayContains(order1, 'a8982474-1350-11df-a1f1-0026b9348838')"
                                     }
